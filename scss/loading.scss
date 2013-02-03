@@ -20,82 +20,90 @@ $darkness: 30%;
 @include keyframes(upper-move) {
     // Blue -> Red
 	0% {
-		@include transform(rotateX(0deg) rotate(0deg));
+		@include transform(rotateX(360deg) rotate(0deg));
 	}
 	12.5% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
 	25% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
     // Red -> Yellow
 	25.01% {
-		@include transform(rotateY(90deg) rotate(-90deg));
+		@include transform(rotateY(90deg) rotate(270deg));
 	}
 	37.5% {
-		@include transform(rotateY(90deg) rotate(-90deg));
+		@include transform(rotateY(90deg) rotate(270deg));
 	}
 	50% {
-		@include transform(rotateY(0deg) rotate(-90deg));
+		@include transform(rotateY(0deg) rotate(270deg));
 	}
     // Yellow -> Green
 	50.01% {
 		@include transform(rotateX(180deg) rotate(0deg));
 	}
 	62.5% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
 	75% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
     // Green -> Blue
 	75.01% {
-		@include transform(rotateY(90deg) rotate(90deg));
+		@include transform(rotateY(270deg) rotate(90deg));
 	}
 	87.5% {
-		@include transform(rotateY(90deg) rotate(90deg));
+		@include transform(rotateY(270deg) rotate(90deg));
 	}
 	100% {
-		@include transform(rotateY(0deg) rotate(90deg));
+		@include transform(rotateY(360deg) rotate(90deg));
 	}
 }
 
 @include keyframes(lower-move) {
+    // Blue -> Red
 	0% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
 	12.5% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
 	25% {
 		@include transform(rotateX(180deg) rotate(0deg));
 	}
+    // Red -> Yellow
 	25.01% {
-		@include transform(rotateY(180deg) rotate(-90deg));
+		@include transform(rotateY(180deg) rotate(270deg));
 	}
 	37.5% {
-		@include transform(rotateY(90deg) rotate(-90deg));
+        // for Safari
+	    -webkit-transform: rotateY(90deg) rotate(270deg);
+        // for IE10
+		transform: rotateY(270deg) rotate(270deg);
 	}
 	50% {
-		@include transform(rotateY(90deg) rotate(-90deg));
+	    -webkit-transform: rotateY(90deg) rotate(270deg);
+		transform: rotateY(270deg) rotate(270deg);
 	}
+    // Yellow -> Green
 	50.01% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
 	62.5% {
-		@include transform(rotateX(90deg) rotate(0deg));
+		@include transform(rotateX(270deg) rotate(0deg));
 	}
 	75% {
-		@include transform(rotateX(0deg) rotate(0deg));
+		@include transform(rotateX(360deg) rotate(0deg));
 	}
+    // Green -> Blue
 	75.01% {
 		@include transform(rotateY(180deg) rotate(90deg));
 	}
 	87.5% {
-		@include transform(rotateY(90deg) rotate(90deg));
+		@include transform(rotateY(270deg) rotate(90deg));
 	}
 	100% {
-		@include transform(rotateY(90deg) rotate(90deg));
+		@include transform(rotateY(270deg) rotate(90deg));
 	}
 }
 
