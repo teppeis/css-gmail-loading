@@ -1,0 +1,265 @@
+@import "compass";
+@import "keyframes";
+@import "animation";
+
+$legacy-support-for-ie: false;
+$legacy-support-for-mozilla: false;
+$experimental-support-for-microsoft: false;
+$experimental-support-for-opera: false;
+//$experimental-support-for-webkit: false;
+//$experimental-support-for-mozilla: false;
+
+$timing: 2.5s;
+$size: 10px;
+$yellow: #FFD539;
+$blue: #3A71F8;
+$red: #F52D27;
+$green: #00B262;
+$darkness: 30%;
+
+@include keyframes(upper-move) {
+    // Blue -> Red
+	0% {
+		@include transform(rotateX(0deg) rotate(0deg));
+	}
+	12.5% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+	25% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+    // Red -> Yellow
+	25.01% {
+		@include transform(rotateY(90deg) rotate(-90deg));
+	}
+	37.5% {
+		@include transform(rotateY(90deg) rotate(-90deg));
+	}
+	50% {
+		@include transform(rotateY(0deg) rotate(-90deg));
+	}
+    // Yellow -> Green
+	50.01% {
+		@include transform(rotateX(180deg) rotate(0deg));
+	}
+	62.5% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+	75% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+    // Green -> Blue
+	75.01% {
+		@include transform(rotateY(90deg) rotate(90deg));
+	}
+	87.5% {
+		@include transform(rotateY(90deg) rotate(90deg));
+	}
+	100% {
+		@include transform(rotateY(0deg) rotate(90deg));
+	}
+}
+
+@include keyframes(lower-move) {
+	0% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+	12.5% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+	25% {
+		@include transform(rotateX(180deg) rotate(0deg));
+	}
+	25.01% {
+		@include transform(rotateY(180deg) rotate(-90deg));
+	}
+	37.5% {
+		@include transform(rotateY(90deg) rotate(-90deg));
+	}
+	50% {
+		@include transform(rotateY(90deg) rotate(-90deg));
+	}
+	50.01% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+	62.5% {
+		@include transform(rotateX(90deg) rotate(0deg));
+	}
+	75% {
+		@include transform(rotateX(0deg) rotate(0deg));
+	}
+	75.01% {
+		@include transform(rotateY(180deg) rotate(90deg));
+	}
+	87.5% {
+		@include transform(rotateY(90deg) rotate(90deg));
+	}
+	100% {
+		@include transform(rotateY(90deg) rotate(90deg));
+	}
+}
+
+
+@include keyframes(base-rotate) {
+	0% {
+		@include transform(rotate(0deg));
+	}
+	25% {
+		@include transform(rotate(0deg));
+	}
+	25.01% {
+		@include transform(rotate(-90deg));
+	}
+	50% {
+		@include transform(rotate(-90deg));
+	}
+	50.01% {
+		@include transform(rotate(180deg));
+	}
+	75% {
+		@include transform(rotate(180deg));
+	}
+	75.01% {
+		@include transform(rotate(90deg));
+	}
+	100% {
+		@include transform(rotate(90deg));
+	}
+}
+
+@include keyframes(upper-color) {
+	0% {
+		background: $red;
+	}
+	50% {
+		background: $red;
+	}
+	50.01% {
+		background: $green;
+	}
+	100% {
+		background: $green;
+	}
+}
+
+@include keyframes(upper-color-shadow) {
+	0% {
+		background: darken($red, $darkness);
+	}
+	25% {
+		background: $red;
+	}
+	50% {
+		background: darken($red, $darkness);
+	}
+	50.01% {
+		background: darken($green, $darkness);
+	}
+	75% {
+		background: $green;
+	}
+	100% {
+		background: darken($green, $darkness);
+	}
+}
+
+@include keyframes(lower-color) {
+	0% {
+		background: $blue;
+	}
+	25% {
+		background: $blue;
+	}
+	25.01% {
+		background: $yellow;
+	}
+	75% {
+		background: $yellow;
+	}
+	75.01% {
+		background: $blue;
+	}
+	100% {
+		background: $blue;
+	}
+}
+
+@include keyframes(lower-color-shadow) {
+	0% {
+		background: $blue;
+	}
+	25% {
+		background: darken($blue, $darkness);
+	}
+	25.01% {
+		background: darken($yellow, $darkness);
+	}
+	50% {
+		background: $yellow;
+	}
+	75% {
+		background: darken($yellow, $darkness);
+	}
+	75.01% {
+		background: darken($blue, $darkness);
+	}
+	100% {
+		background: $blue;
+	}
+}
+
+.loading {
+	position: relative;
+    width: $size * 2;
+    height: $size * 2;
+}
+
+.semicircle {
+	position: absolute;	
+	width: $size * 2;
+	height: $size * 2;
+	@include animation-fill-mode(both);
+	@include animation-duration($timing);
+	@include animation-timing-function(linear);
+	@include animation-iteration-count(infinite);
+}
+
+.semicircle .semicircle-inner {
+	width: $size * 2;
+	height: $size;
+	border-radius: $size $size 0 0;
+	@include animation-fill-mode(both);
+	@include animation-duration($timing);
+	@include animation-timing-function(linear);
+	@include animation-iteration-count(infinite);
+}
+
+.semicircle.upper-base {
+	& .semicircle-inner {
+		  @include animation-name(upper-color);
+	}
+	@include animation-name(base-rotate);
+}
+
+.semicircle.upper-move {
+	& .semicircle-inner {
+		@include animation-name(lower-color-shadow);
+	}
+	@include animation-name(upper-move);
+}
+
+.semicircle.lower-base {
+	& .semicircle-inner {
+		border-radius: 0 0 $size $size;
+		margin-top: $size;
+	  @include animation-name(lower-color);
+	}
+	@include animation-name(base-rotate);
+}
+
+.semicircle.lower-move {
+	& .semicircle-inner {
+		@include animation-name(upper-color-shadow);
+	}
+	@include animation-name(lower-move);
+}

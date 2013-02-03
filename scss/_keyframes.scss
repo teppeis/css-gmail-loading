@@ -1,0 +1,27 @@
+@mixin keyframes($name) {
+  $support-for-webkit: $experimental-support-for-webkit;
+  $support-for-mozilla: $experimental-support-for-mozilla;
+
+  @if ($experimental-support-for-webkit) {
+    @-webkit-keyframes #{$name} {
+        $experimental-support-for-webkit: true;
+        $experimental-support-for-mozilla: false;
+        @content
+    }
+  }
+  @if ($experimental-support-for-mozilla) {
+    @-moz-keyframes #{$name} {
+      $experimental-support-for-webkit: false;
+      $experimental-support-for-mozilla: true;
+      @content
+    }
+  }
+  @keyframes #{$name} {
+    $experimental-support-for-webkit: false;
+    $experimental-support-for-mozilla: false;
+    @content
+  }
+
+  $experimental-support-for-webkit: $support-for-webkit;
+  $experimental-support-for-mozilla: $support-for-mozilla;
+}
