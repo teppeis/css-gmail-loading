@@ -2,5 +2,8 @@
 
 Gmail iPhone App like loading animation in pure CSS.
 
-DEMO
+### Demo
+http://teppeis.github.com/css-gmail-loading/
 
+### License
+MIT License
